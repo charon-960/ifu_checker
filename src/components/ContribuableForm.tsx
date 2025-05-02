@@ -14,7 +14,9 @@ import {
   AlertDialogDescription,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@radix-ui/react-alert-dialog";
+  AlertDialogHeader,
+  AlertDialogFooter,
+} from "@/components/ui/alert-dialog";
 
 
 export default function ContribuableForm() {
@@ -147,7 +149,7 @@ export default function ContribuableForm() {
                     <Button>Mettre à jour</Button>
                   </AlertDialogTrigger>
                   <AlertDialogContent>
-                    <div> {/* Remplacement de AlertDialogHeader par une div */}
+                    <AlertDialogHeader>
                       <AlertDialogTitle>
                         Confirmer la mise à jour
                       </AlertDialogTitle>
@@ -155,14 +157,13 @@ export default function ContribuableForm() {
                         Êtes-vous sûr de vouloir mettre à jour les informations
                         de ce contribuable ?
                       </AlertDialogDescription>
-                    </div>
-                    {/* Remplacement de AlertDialogFooter par une div*/}
-                    <div className="flex justify-end mt-4">
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
                       <AlertDialogCancel>Non</AlertDialogCancel>
                       <AlertDialogAction onClick={handleUpdate}>
                         Oui, mettre à jour
                       </AlertDialogAction>
-                    </div>
+                    </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
               </div>
