@@ -96,6 +96,18 @@ export default function ContribuableForm() {
           </div>
         )}
 
+        {(loading || updateLoading) && (
+          <div className="my-4">
+            <Progress className="h-2 animate-pulse" />
+          </div>
+        )}
+
+        {(loading || updateLoading) && (
+          <div className="my-4">
+            <Progress className="h-2 animate-pulse" />
+          </div>
+        )}
+
 
           {data && (
             <>

@@ -27,9 +27,9 @@ export const useContribuable = () => {
         setError("Aucun contribuable trouvé pour cet IFU.",);
       } else {
         setError("Erreur lors de la récupération des données.");
-      }
-    } else {
-        setError("Erreur inconnue.");
+      }  
+    } else { 
+        setError("Erreur inconnue."); 
       }
     } finally {
       setLoading(false);
