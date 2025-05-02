@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100vw; /* Prend toute la largeur de la fenêtre */
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  margin: 0; /* Supprime les marges */
+  padding: 0; /* Supprime les paddings */
   text-align: center;
+  overflow: hidden; /* Empêche les débordements */
 }
 
 .logo {

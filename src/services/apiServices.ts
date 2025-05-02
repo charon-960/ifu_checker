@@ -15,7 +15,7 @@ export const getToken = async (): Promise<string> => {
   return response.data.accessToken;
 };
 
-export const getContribuableByIfu = async (ifu: string, token: string): Promise<Contribuable> => {
+export const getContribuableByIfu = async (ifu: string, token: string): Promise<Contribuable | null> => {
   const response = await axios.get(`${dataUrl}?ifu=${ifu}`, {
     headers: {
       'Authorization': `Bearer ${token}`,

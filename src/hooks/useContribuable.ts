@@ -14,9 +14,23 @@ export const useContribuable = () => {
     try {
       const token = await getToken();
       const result = await getContribuableByIfu(ifu, token);
+      if (!result) {
+        setError("Aucun contribuable trouvé pour cet IFU.");
+        return;
+      }
       setData(result);
-    } catch (err) {
-      setError("Erreur lors de la récupération des données",);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        // Vérifiez si l'erreur a une propriété `response`
+        const responseError = (err as { response?: { status: number } }).response;
+        if (responseError?.status === 401) {
+        setError("Aucun contribuable trouvé pour cet IFU.",);
+      } else {
+        setError("Erreur lors de la récupération des données.");
+      }
+    } else {
+        setError("Erreur inconnue.");
+      }
     } finally {
       setLoading(false);
     }

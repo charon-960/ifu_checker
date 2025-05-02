@@ -27,7 +27,7 @@ export const useUpdateContribuable = () => {
       const tokenKeycloak = await getKeycloackToken();
       await updateContribuable([mapped], tokenKeycloak);
       setSuccess(true);
-    } catch (e) {
+    } catch {
       setUpdateError("Échec de la mise à jour.");
     } finally {
       setUpdateLoading(false);
