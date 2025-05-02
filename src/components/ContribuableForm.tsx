@@ -100,7 +100,7 @@ export default function ContribuableForm() {
           {data && (
             <>
               <table className="min-w-full border border-gray-300 text-sm">
-                <thead className="bg-gradient-to-r from-blue-500 to-blue-700 text-white">
+              <thead className="bg-primary text-primary-foreground">
                   <tr>
                     <th className="border px-4 py-2 text-left">IFU</th>
                     <th className="border px-4 py-2 text-left">Nom</th>
@@ -113,7 +113,7 @@ export default function ContribuableForm() {
                     <td className="border px-4 py-2">{data.ifu}</td>
                     <td className="border px-4 py-2">{data.nom}</td>
                     <td className="border px-4 py-2">{data.prenom}</td>
-                    <td className="border px-4 py-2">{data.statutCnf}
+                    <td className="border px-4 py-2">
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-bold ${
                           data.statutCnf === "Actif"
