@@ -113,34 +113,36 @@ export default function ContribuableForm() {
 
           {data && (
             <>
-              <table className="min-w-full border border-gray-300 text-sm">
-              <thead className="bg-primary text-primary-foreground">
-                  <tr>
-                    <th className="border px-4 py-2 text-left">IFU</th>
-                    <th className="border px-4 py-2 text-left">Nom</th>
-                    <th className="border px-4 py-2 text-left">Adresse</th>
-                    <th className="border px-4 py-2 text-left">Status</th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white">
-                  <tr className="hover:bg-gray-100 transition-colors">
-                    <td className="border px-4 py-2">{data.ifu}</td>
-                    <td className="border px-4 py-2">{data.nom}</td>
-                    <td className="border px-4 py-2">{data.prenom}</td>
-                    <td className="border px-4 py-2">
-                      <span
-                        className={`px-2 py-1 rounded-full text-xs font-bold ${
-                          data.statutCnf === "Actif"
-                            ? "bg-green-100 text-green-700"
-                            : "bg-red-100 text-red-700"
-                        }`}
-                    >
-                        {data.statutCnf}
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <form className="bg-white p-6 rounded-md shadow space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left">IFU</label>
+                    <Input value={data.ifu} disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left">Telephone</label>
+                    <Input value={data.telephone} disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left
+                    ">Ville</label>
+                    <Input value={data.ville} disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left">Email</label>
+                    <Input value={data.email} disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left">Nom</label>
+                    <Input value={data.nom} disabled />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-1 text-left">Statut</label>
+                    <Input value={data.statutCnf} disabled />
+                  </div>
+                </div>
+              </form>
+
 
 
               <div className="flex justify-end mt-4">
