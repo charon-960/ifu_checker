@@ -172,7 +172,7 @@ export default function ContribuableForm() {
                     <Input value={data.prenom ?? "-"} disabled />
                   </div>
                   <div>
-                    <label htmlFor="ville" className="block text-sm font-medium mb-1 text-left">Adresse Entrprise</label>
+                    <label htmlFor="ville" className="block text-sm font-medium mb-1 text-left">Adresse de l'Entreprise</label>
                     <Input value={data.ville ?? "-"} disabled />
                   </div>
                   <div>
