@@ -28,6 +28,7 @@ export default function ContribuableForm() {
   const handleSearch = () => {
     if (ifu.trim()) {
       fetchContribuable(ifu);
+      setIfu("");
     }
   };
 
@@ -59,13 +60,16 @@ export default function ContribuableForm() {
   };
 
   return (
-        <div className="h-full w-full bg-gray-100">
-        <div className="w-full bg-primary text-primary-foreground py-6 flex items-center justify-center">
-          <h1 className="text-2xl md:text-3xl font-bold">
-            Recherche de Contribuable
-          </h1>
-        </div>
-      
+    <div className="h-full w-full bg-gray-100 flex flex-col">
+      {/* En-tête de la page */}
+      <div className="w-full bg-primary text-primary-foreground py-6 flex items-center justify-center">
+        <h1 className="text-2xl md:text-3xl font-bold">
+          Recherche de Contribuable
+        </h1>
+      </div>
+
+      {/* Contenu principal de la page avec défilement */} 
+      <div className="flex-1 overflow-y-auto">
         <div className="max-w-4xl mx-auto py-10 px-4">
           <Card>
             <CardContent className="p-6">
@@ -95,6 +99,12 @@ export default function ContribuableForm() {
                       placeholder="Entrez un numéro IFU..."
                       value={ifu}
                       onChange={(e) => setIfu(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault(); // Empêche le comportement par défaut du formulaire
+                          handleSearch(); // Lance la recherche
+                        }
+                      }}
                       className="pl-10"
                     />
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -132,19 +142,20 @@ export default function ContribuableForm() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-        {(loading || updateLoading) && (
+
+        {(loading) && (
           <div className="my-4">
             <Progress className="h-2 animate-pulse" />
           </div>
         )}
 
-        {(loading || updateLoading) && (
+        {(loading) && (
           <div className="my-4">
             <Progress className="h-2 animate-pulse" />
           </div>
         )}
 
-        {(loading || updateLoading) && (
+        {(loading) && (
           <div className="my-4">
             <Progress className="h-2 animate-pulse" />
           </div>
@@ -154,6 +165,26 @@ export default function ContribuableForm() {
           {data && (
             <>
               <form className="bg-white p-6 rounded-md shadow space-y-4">
+                {/* Résumé des informations principales */}
+                <div className="bg-gray-100 p-4 rounded-md shadow-inner">
+                  <h2 className="text-lg font-semibold text-gray-700">Statut Cnf</h2>
+                  <p className="text-sm text-gray-600">
+                    <strong></strong> {" "} <br />
+                    <span
+                      className={`px-2 py-1 rounded ${
+                        data.statutCnf === "A"
+                          ? "bg-green-100 text-green-700"
+                          : "bg-red-100 text-red-700"
+                      }`}
+                    >
+                      {data.statutCnf === "A"
+                      ? "Ne doit pas payer la taxe !"
+                      : "Doit payer la taxe !"}
+                    </span>
+                  </p>
+                </div>
+
+                {/* Champs détaillés */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="ifu" className="block text-sm font-medium mb-1 text-left">IFU</label>
@@ -187,11 +218,11 @@ export default function ContribuableForm() {
               </form>
 
 
-
+              {/* Bouton de mise à jour */}
               <div className="flex justify-end mt-4">
                 <AlertDialog>
                   <AlertDialogTrigger asChild>
-                    <Button disabled={updateLoading}>
+                    <Button disabled={updateLoading} className="bg-primary text-white hover:bg-primary-dark shadow-md transition-transform transform hover:scale-105">
                       {updateLoading ? (
                         <div className="flex items-center gap-2">
                           <svg
@@ -244,5 +275,6 @@ export default function ContribuableForm() {
           )}
         </div>
       </div>
+    </div>  
   );
 }
