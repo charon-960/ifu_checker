@@ -58,6 +58,10 @@ import { Contribuable } from "@/types/contribTypes";
   }
   
   export function TableDisplay({ data }: TableDisplayProps) {
+    if (!data) 
+      return <div>Aucune donnée à afficher</div>;
+
+
     return (
       <Table>
         <TableHeader>

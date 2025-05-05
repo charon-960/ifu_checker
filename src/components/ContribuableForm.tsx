@@ -59,26 +59,74 @@ export default function ContribuableForm() {
   };
 
   return (
-    <>
-      <div className="h-full w-full bg-gray-100">
+        <div className="h-full w-full bg-gray-100">
         <div className="w-full bg-primary text-primary-foreground py-6 flex items-center justify-center">
           <h1 className="text-2xl md:text-3xl font-bold">
             Recherche de Contribuable
           </h1>
         </div>
-
+      
         <div className="max-w-4xl mx-auto py-10 px-4">
           <Card>
             <CardContent className="p-6">
-              <div className="flex items-center space-x-4">
-                <Input
-                  placeholder="Entrez un numéro IFU..."
-                  value={ifu}
-                  onChange={(e) => setIfu(e.target.value)}
-                />
-                <Button onClick={handleSearch}>Rechercher</Button>
+              <div className="flex flex-col items-center space-y-4">
+                {/* Ajout d'une icône ou illustration */}
+                <div className="text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-16 w-16"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h7l5 5v12a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+      
+                {/* Champ de recherche */}
+                <div className="flex items-center w-full space-x-4">
+                  <div className="relative w-full">
+                    <Input
+                      placeholder="Entrez un numéro IFU..."
+                      value={ifu}
+                      onChange={(e) => setIfu(e.target.value)}
+                      className="pl-10"
+                    />
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 text-gray-400"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M10 6a4 4 0 100 8 4 4 0 000-8zM21 21l-6-6"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                  <Button
+                    onClick={handleSearch}
+                    className="bg-primary text-white hover:bg-primary-dark shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Rechercher
+                  </Button>
+                </div>
+      
+                {/* Message d'aide */}
+                <p className="text-sm text-gray-500">
+                  Entrez un numéro IFU valide pour rechercher un contribuable.
+                </p>
               </div>
-            
             </CardContent>
           </Card>
         </div>
@@ -108,28 +156,31 @@ export default function ContribuableForm() {
               <form className="bg-white p-6 rounded-md shadow space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1 text-left">IFU</label>
+                    <label htmlFor="ifu" className="block text-sm font-medium mb-1 text-left">IFU</label>
                     <Input value={data.ifu} disabled />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1 text-left">Telephone</label>
+                    <label htmlFor="raisonSociale" className="block text-sm font-medium mb-1 text-left">Nom de l'entreprise</label>
+                    <Input value={data.raisonSociale} disabled />
+                  </div>
+                  <div>
+                    <label htmlFor="identiteGestionnaire" className="block text-sm font-medium mb-1 text-left">Nom du représentant</label>
+                    <Input value={data.identiteGestionnaire ?? "-"} disabled />
+                  </div>
+                  <div>
+                    <label htmlFor="prenom" className="block text-sm font-medium mb-1 text-left">Prénom du repésentant</label>
+                    <Input value={data.prenom ?? "-"} disabled />
+                  </div>
+                  <div>
+                    <label htmlFor="ville" className="block text-sm font-medium mb-1 text-left">Adresse Entrprise</label>
+                    <Input value={data.ville ?? "-"} disabled />
+                  </div>
+                  <div>
+                    <label htmlFor="telephone" className="block text-sm font-medium mb-1 text-left">Téléphone</label>
                     <Input value={data.telephone} disabled />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium mb-1 text-left
-                    ">Ville</label>
-                    <Input value={data.ville} disabled />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1 text-left">Email</label>
-                    <Input value={data.email} disabled />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1 text-left">Nom</label>
-                    <Input value={data.nom} disabled />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-1 text-left">Statut</label>
+                    <label htmlFor="statutCnf" className="block text-sm font-medium mb-1 text-left">Statut</label>
                     <Input value={data.statutCnf} disabled />
                   </div>
                 </div>
@@ -193,6 +244,5 @@ export default function ContribuableForm() {
           )}
         </div>
       </div>
-    </>
   );
 }
