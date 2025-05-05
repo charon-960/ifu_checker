@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { Contribuable, MappedContribuable } from '../types/contribTypes';
 
-const authUrl = 'https://cfisc-backend.impots.bj:443/api/auth/signin';
-const dataUrl = '/restapi';
-const keycloackUrl = 'https://keycloak-cwb.webbfontaine.am/auth/realms/cwb/protocol/openid-connect/token';
-const updateUrl = 'http://localhost:9050/bj-company-service/taxpayers/process';
+const authUrl = import.meta.env.VITE_AUTH_URL;
+const dataUrl = import.meta.env.VITE_DATA_URL;
+const keycloackUrl = import.meta.env.VITE_KEYCLOAK_AUTH_URL;
+const updateUrl = import.meta.env.VITE_UPDATE_URL;
 
 
 export const getToken = async (): Promise<string> => {
@@ -43,7 +43,7 @@ export const getKeycloackToken = async (): Promise<string> => {
     },
   });
 
-  return response.data.accessToken;
+  return response.data.access_token;
 };
 
 export const updateContribuable = async (

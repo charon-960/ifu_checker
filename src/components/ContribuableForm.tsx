@@ -28,15 +28,8 @@ export default function ContribuableForm() {
   const handleSearch = () => {
     if (ifu.trim()) {
       fetchContribuable(ifu);
-      console.log("Recherche effectuée pour l'IFU :", ifu);
     }
   };
-
-  useEffect(() => {
-    if (data) {
-      console.log("Données récupérées :", data);
-    }
-  }, [data]);
 
   // Afficher une notification d'erreur lors de la recherche
   useEffect(() => {
@@ -91,7 +84,6 @@ export default function ContribuableForm() {
         </div>
 
         <div className="max-w-4xl mx-auto">
-          {/* Barre de chargement indéterminée */}
         {(loading || updateLoading) && (
           <div className="my-4">
             <Progress className="h-2 animate-pulse" />
@@ -184,7 +176,7 @@ export default function ContribuableForm() {
                         Confirmer la mise à jour
                       </AlertDialogTitle>
                       <AlertDialogDescription>
-                        Êtes-vous sûr de vouloir mettre à jour les informations
+                        Voulez-vous mettre à jour les informations
                         de ce contribuable ?
                       </AlertDialogDescription>
                     </AlertDialogHeader>
