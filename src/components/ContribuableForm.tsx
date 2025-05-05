@@ -174,7 +174,7 @@ export default function ContribuableForm() {
               <form className="bg-white p-6 rounded-md shadow space-y-4">
                 {/* Résumé des informations principales */}
                 <div className="bg-gray-100 p-4 rounded-md shadow-inner">
-                  <h2 className="text-lg font-semibold text-gray-700">Statut Cnf</h2>
+                  <h2 className="text-lg font-semibold text-gray-700">Statut Cnf :</h2>
                   <p className="text-sm text-gray-600">
                     <strong></strong> {" "} <br />
                     <span
@@ -185,8 +185,8 @@ export default function ContribuableForm() {
                       }`}
                     >
                       {data.statutCnf === "A"
-                      ? "Ne doit pas payer la taxe !"
-                      : "Doit payer la taxe !"}
+                      ? "Le contribuable ne doit pas payer la taxe !"
+                      : "Le contribuable doit payer la taxe !"}
                     </span>
                   </p>
                 </div>
