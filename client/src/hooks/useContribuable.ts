@@ -21,7 +21,6 @@ export const useContribuable = () => {
       setData(result);
     } catch (err: unknown) {
       if (err instanceof Error) {
-        // Vérifiez si l'erreur a une propriété `response`
         const responseError = (err as { response?: { status: number } }).response;
         if (responseError?.status === 401) {
         setError("Aucun contribuable trouvé pour cet IFU.",);
